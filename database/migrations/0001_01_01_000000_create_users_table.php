@@ -18,13 +18,14 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->datetime('created_at')->useCurrent();
+            $table->datetime('updated_at')->useCurrent();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
-            $table->timestamp('created_at')->nullable();
+            $table->datetime('created_at')->useCurrent();
         });
 
         Schema::create('sessions', function (Blueprint $table) {
