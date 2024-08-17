@@ -22,17 +22,6 @@ jobs:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
 
-      # - name: Apply Pint
-      #   uses: aglipanci/laravel-pint-action@2.1.0
-      #   with:
-      #     configPath: "pint.json"
-      #     verboseMode: true
-
-      # - name: Auto Commit
-      #   uses: stefanzweifel/git-auto-commit-action@v4
-      #   with:
-      #     commit_message: Apply Pint
-
       - name: use token
         run: echo "$GITHUB_TOKEN"
         env:
