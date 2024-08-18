@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Authenticate::redirectUsing(function () {
+            if (Route::is('admin.*')) {
+                return route('admin.login');
+            } else {
+                return route('account.login');
+            }
+        });
     }
 }

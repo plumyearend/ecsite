@@ -3,11 +3,18 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "watch": "watch 'npm run build'"
     },
     "devDependencies": {
+        "autoprefixer": "^10.4.20",
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.4.41",
+        "tailwindcss": "^3.4.10",
         "vite": "^5.0"
+    },
+    "dependencies": {
+        "preline": "^2.4.1"
     }
 }
