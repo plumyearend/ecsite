@@ -20,6 +20,6 @@ class SignUpController extends Controller
             throw new Exception('初回登録に失敗しました。');
         }
 
-        return view('account.registered');
+        return view('account.email-send-complete');
     }
 }
