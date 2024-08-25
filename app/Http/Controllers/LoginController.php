@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Login\AuthenticateRequest;
+use App\UseCases\Login\LoginAction;
 
 class LoginController extends Controller
 {
     public function login()
     {
         return view('account.login');
+    }
+
+    public function authenticate(AuthenticateRequest $request, LoginAction $action)
+    {
+        $input = $request->only(['email', 'password']);
+        if (!$action($input['email'], $input['password'])) {
+            session()->flash('login_error', trans('auth.failed'));
+            return redirect()->route('account.login');
+        }
+
+        return redirect()->route('top');
     }
 }
