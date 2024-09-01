@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Login\AuthenticateRequest;
 use App\UseCases\Login\LoginAction;
+use App\UseCases\Login\LogoutAction;
 
 class LoginController extends Controller
 {
@@ -21,5 +22,12 @@ class LoginController extends Controller
         }
 
         return redirect()->route('top');
+    }
+
+    public function logout(LogoutAction $logoutAction)
+    {
+        $logoutAction();
+
+        return redirect()->route('account.login');
     }
 }

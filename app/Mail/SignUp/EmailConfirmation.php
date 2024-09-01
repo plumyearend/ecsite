@@ -26,9 +26,7 @@ class EmailConfirmation extends Mailable
 
     public function content(): Content
     {
-        // TODO: トークン含めたURLを生成
-        // $url = route()
-        $url = url("/");
+        $url = route('account.activate', ['token' => $this->tmpRegistrationUser->token]);
         return new Content(
             text: 'mail.signup.email-confirmation',
             with: [
