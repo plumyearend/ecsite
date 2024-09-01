@@ -18,6 +18,7 @@ class LoginController extends Controller
         $input = $request->only(['email', 'password']);
         if (!$action($input['email'], $input['password'])) {
             session()->flash('login_error', trans('auth.failed'));
+
             return redirect()->route('account.login');
         }
 

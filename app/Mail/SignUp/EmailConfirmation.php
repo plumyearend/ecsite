@@ -13,9 +13,7 @@ class EmailConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public TmpRegistrationUser $tmpRegistrationUser)
-    {
-    }
+    public function __construct(public TmpRegistrationUser $tmpRegistrationUser) {}
 
     public function envelope(): Envelope
     {
@@ -27,6 +25,7 @@ class EmailConfirmation extends Mailable
     public function content(): Content
     {
         $url = route('account.activate', ['token' => $this->tmpRegistrationUser->token]);
+
         return new Content(
             text: 'mail.signup.email-confirmation',
             with: [

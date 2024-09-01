@@ -19,9 +19,9 @@ Route::prefix('account')->name('account.')->group(function () {
         Route::get('/activate/{token}', [SignUpController::class, 'activate'])
             ->whereAlphaNumeric('token')
             ->name('activate');
-            Route::prefix('activate')->name('activate.')->group(function () {
-                Route::post('/store', [SignUpController::class, 'store'])->name('store');
-            });
+        Route::prefix('activate')->name('activate.')->group(function () {
+            Route::post('/store', [SignUpController::class, 'store'])->name('store');
+        });
     });
     Route::middleware('auth:web')->group(function () {
         Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

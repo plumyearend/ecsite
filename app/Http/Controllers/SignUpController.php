@@ -67,8 +67,5 @@ class SignUpController extends Controller
         return redirect()->route('account.addresses');
     }
 
-    public function addresses()
-    {
-
-    }
+    public function addresses() {}
 }
