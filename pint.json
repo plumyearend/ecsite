@@ -5,6 +5,8 @@
         "database/migrations"
     ],
     "rules": {
-        "not_operator_with_successor_space": false
+        "not_operator_with_successor_space": false,
+        "single_line_empty_body": false,
+        "new_with_parentheses": false
     }
 }

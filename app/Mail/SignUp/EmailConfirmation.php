@@ -13,7 +13,9 @@ class EmailConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public TmpRegistrationUser $tmpRegistrationUser) {}
+    public function __construct(public TmpRegistrationUser $tmpRegistrationUser)
+    {
+    }
 
     public function envelope(): Envelope
     {

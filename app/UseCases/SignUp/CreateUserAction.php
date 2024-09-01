@@ -9,7 +9,7 @@ class CreateUserAction
 {
     public function __invoke(array $data): ?User
     {
-        $user = new User;
+        $user = new User();
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = $data['password'];
