@@ -7,6 +7,12 @@
         </div>
         <!-- End Title -->
 
+        @if (session('address_saved'))
+        <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50">
+            お届け先を追加しました。
+        </div>
+        @endif
+
         <!-- Grid -->
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 lg:mb-14">
             <!-- Card -->

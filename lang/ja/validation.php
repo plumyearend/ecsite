@@ -152,6 +152,8 @@ return [
     'ulid' => ':attributeに有効なULIDを指定してください。',
     'uuid' => ':attributeに有効なUUIDを指定してください。',
     'password_format' => ':attributeの形式が正しくありません。',
+    'postcode_format' => ':attributeの形式が正しくありません。',
+    'tel_format' => ':attributeの形式が正しくありません。',
 
     /*
     |--------------------------------------------------------------------------
@@ -258,6 +260,8 @@ return [
         'username' => 'ユーザー名',
         'year' => '年',
         'accepts' => '利用規約およびプライバシーポリシー',
+        'postcode' => '郵便番号',
+        'is_default_adress' => 'この住所を既定のお届け先にする',
     ],
 
 ];

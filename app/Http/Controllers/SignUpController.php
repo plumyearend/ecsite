@@ -64,6 +64,6 @@ class SignUpController extends Controller
             throw new Exception('エラーが発生しました。');
         }
 
-        return redirect()->route('account.addresses');
+        return redirect()->route('account.addresses.create');
     }
 }
