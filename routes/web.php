@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Account\AddressController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignUpController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +27,8 @@ Route::prefix('account')->name('account.')->group(function () {
     });
     Route::middleware('auth:web')->group(function () {
         Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-        Route::get('/addresses', [SignUpController::class, 'addresses'])->name('addresses');
+        Route::get('/', [AccountController::class, 'index'])->name('index');
+        Route::resource('/addresses', AddressController::class)
+            ->except(['show', 'destroy']);
     });
 });
