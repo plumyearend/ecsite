@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('product_images', function (Blueprint $table) {
             $table->id()->comment('ID');
-            $table->foreignId('product_id')->comment('商品ID')->constrained();
+            $table->foreignId('product_id')->comment('商品ID')->constrained()->cascadeOnDelete();
             $table->unsignedInteger('sort')->comment('表示順');
             $table->string('image')->comment('画像ファイル名');
             $table->datetime('created_at')->useCurrent()->comment('作成日時');

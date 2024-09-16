@@ -4,8 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Enums\Product\Status;
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers\ProductImagesRelationManager;
 use App\Models\Product;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -59,6 +60,20 @@ class ProductResource extends Resource
                             ->required(),
                     ])
                     ->columns(2),
+                Repeater::make('images')
+                    ->relationship('productImages')
+                    ->label('商品画像')
+                    ->schema([
+                        FileUpload::make('image')
+                            ->label('画像')
+                            ->directory('products')
+                            ->visibility('private')
+                            ->required(),
+                    ])
+                    ->reorderable()
+                    ->orderColumn('sort')
+                    ->grid(2)
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -116,7 +131,6 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            ProductImagesRelationManager::class,
         ];
     }
 
