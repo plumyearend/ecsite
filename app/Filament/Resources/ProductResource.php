@@ -7,7 +7,6 @@ use App\Filament\Exports\ProductExporter;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Product;
 use Filament\Actions\Exports\Enums\ExportFormat;
-use Filament\Tables\Actions\ExportAction;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
@@ -17,6 +16,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -25,6 +25,7 @@ class ProductResource extends Resource
     protected static ?string $model = Product::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static ?string $label = '商品';
 
     public static function form(Form $form): Form
@@ -131,7 +132,7 @@ class ProductResource extends Resource
                     ->exporter(ProductExporter::class)
                     ->formats([
                         ExportFormat::Csv,
-                    ])
+                    ]),
             ]);
     }
 
