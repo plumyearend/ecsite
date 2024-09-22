@@ -3,8 +3,11 @@
 namespace App\Filament\Resources;
 
 use App\Enums\Product\Status;
+use App\Filament\Exports\ProductExporter;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Product;
+use Filament\Actions\Exports\Enums\ExportFormat;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
@@ -30,7 +33,7 @@ class ProductResource extends Resource
             ->schema([
                 Select::make('status')
                     ->label('状態')
-                    ->options(Status::list())
+                    ->options(Status::class)
                     ->default(Status::PRIVATE)
                     ->required(),
                 TextInput::make('name')
@@ -86,9 +89,6 @@ class ProductResource extends Resource
                     ->sortable(),
                 TextColumn::make('status')
                     ->label('ステータス')
-                    ->formatStateUsing(function ($state) {
-                        return $state->label();
-                    })
                     ->sortable(),
                 TextColumn::make('name')
                     ->label('商品名')
@@ -125,6 +125,13 @@ class ProductResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ])
+            ->headerActions([
+                ExportAction::make()
+                    ->exporter(ProductExporter::class)
+                    ->formats([
+                        ExportFormat::Csv,
+                    ])
             ]);
     }
 
