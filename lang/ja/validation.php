@@ -261,7 +261,7 @@ return [
         'year' => '年',
         'accepts' => '利用規約およびプライバシーポリシー',
         'postcode' => '郵便番号',
-        'is_default_adress' => 'この住所を既定のお届け先にする',
+        'is_default_address' => 'この住所を既定のお届け先にする',
     ],
 
 ];
