@@ -4,12 +4,11 @@ use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Account\AddressController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignUpController;
+use App\Http\Controllers\TopController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:web')->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('top');
+    Route::get('/', [TopController::class, 'top'])->name('top');
 });
 
 Route::prefix('account')->name('account.')->group(function () {

@@ -7,15 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class SaveAction
 {
-    public function __invoke(array $data): ?Address
+    public function __invoke(array $data, Address $address = null): ?Address
     {
         $user = Auth::guard('web')->user();
-        $existsUser = Address::query()
+        $existsDefaultAddress = Address::query()
             ->where('user_id', $user->id)
+            ->where('is_default_address', true)
             ->exists();
 
-        // TODO: 編集実装時にupdateOrCreateへ変更
-        $address = Address::create([
+        $insertData = [
             'user_id' => Auth::guard('web')->user()->id,
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -23,11 +23,25 @@ class SaveAction
             'prefecture_id' => $data['prefecture_id'],
             'address1' => $data['address1'],
             'address2' => $data['address2'],
-            'address3' => $data['address3'],
+            'address3' => $data['address3'] ?? null,
             'tel' => $data['tel'],
-            'is_default_adress' => $existsUser ? $data['is_default_adress'] : true,
-        ]);
+            'is_default_address' => $data['is_default_address'] ?? false,
+        ];
+        if ($existsDefaultAddress) {
+            $insertData['is_default_address'] = true;
+        }
+        $updateAddress = Address::updateOrCreate(['id' => $address ? $address->id : null], $insertData);
 
-        return $address;
+        if (isset($data['is_default_address']) && $data['is_default_address']) {
+            Address::query()
+                ->whereNot('id', $updateAddress->id)
+                ->where('user_id', $user->id)
+                ->where('is_default_address', true)
+                ->update([
+                    'is_default_address' => false,
+                ]);
+        }
+
+        return $updateAddress;
     }
 }

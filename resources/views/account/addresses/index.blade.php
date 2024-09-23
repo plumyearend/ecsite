@@ -12,84 +12,48 @@
             お届け先を追加しました。
         </div>
         @endif
+        @if (session('address_updated'))
+        <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50">
+            お届け先を更新しました。
+        </div>
+        @endif
 
         <!-- Grid -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 lg:mb-14">
+        <div class="grid grid-cols-2 gap-6 mb-10 lg:mb-14">
+            @foreach ($addresses as $address)
             <!-- Card -->
-            <a class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md focus:outline-none focus:shadow-md transition"
-                href="#">
-                <div class="aspect-w-16 aspect-h-9">
-                    <img class="w-full object-cover rounded-t-xl"
-                        src="https://images.unsplash.com/photo-1668869713519-9bcbb0da7171?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&q=80"
-                        alt="Blog Image">
-                </div>
+            <div class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md focus:outline-none focus:shadow-md transition">
                 <div class="p-4 md:p-5">
-                    <p class="mt-2 text-xs uppercase text-gray-600">
-                        Product
+                    <div class="flex justify-between">
+                        <h3 class="text-lg font-medium text-gray-800">
+                            お届け先{{ $loop->iteration }}
+                        </h3>
+                        @if ($address->is_default_address)
+                        <p class="bg-cyan-600 text-white text-xs rounded border border-transparen p-1">既定のお届け先</p>
+                        @endif
+                    </div>
+                    <p class="mt-2 text-base font-medium text-gray-600">
+                        〒{{ $address->postcode_hyphen }}
                     </p>
-                    <h3 class="mt-2 text-lg font-medium text-gray-800 group-hover:text-blue-600">
-                        Better is when everything works together
-                    </h3>
-                </div>
-            </a>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <a class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md focus:outline-none focus:shadow-md transition"
-                href="#">
-                <div class="aspect-w-16 aspect-h-9">
-                    <img class="w-full object-cover rounded-t-xl"
-                        src="https://images.unsplash.com/photo-1668584054035-f5ba7d426401?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&q=80"
-                        alt="Blog Image">
-                </div>
-                <div class="p-4 md:p-5">
-                    <p class="mt-2 text-xs uppercase text-gray-600">
-                        Business
+                    <p class="mt-2 text-base font-medium text-gray-600">
+                        {{ $prefectures[$address->prefecture_id] }} {{ $address->address1 }} {{ $address->address2 }} {{ $address->address3 }}
                     </p>
-                    <h3 class="mt-2 text-lg font-medium text-gray-800 group-hover:text-blue-600">
-                        What CFR really is about
-                    </h3>
-                </div>
-            </a>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <a class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md focus:outline-none focus:shadow-md transition"
-                href="#">
-                <div class="aspect-w-16 aspect-h-9">
-                    <img class="w-full object-cover rounded-t-xl"
-                        src="https://images.unsplash.com/photo-1668863699009-1e3b4118675d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&q=80"
-                        alt="Blog Image">
-                </div>
-                <div class="p-4 md:p-5">
-                    <p class="mt-2 text-xs uppercase text-gray-600">
-                        Business
+                    <p class="mt-2 text-base font-medium text-gray-600">
+                        電話番号: {{ $address->tel }}
                     </p>
-                    <h3 class="mt-2 text-lg font-medium text-gray-800 group-hover:text-blue-600">
-                        Should Product Owners think like entrepreneurs?
-                    </h3>
-                </div>
-            </a>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <a class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md focus:outline-none focus:shadow-md transition"
-                href="#">
-                <div class="aspect-w-16 aspect-h-9">
-                    <img class="w-full object-cover rounded-t-xl"
-                        src="https://images.unsplash.com/photo-1668584054131-d5721c515211?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&q=80"
-                        alt="Blog Image">
-                </div>
-                <div class="p-4 md:p-5">
-                    <p class="mt-2 text-xs uppercase text-gray-600">
-                        Facilitate
+                    <p class="mt-2 text-base font-medium text-gray-600">
+                        {{ $address->last_name }} {{ $address->first_name }}
                     </p>
-                    <h3 class="mt-2 text-lg font-medium text-gray-800 group-hover:text-blue-600">
-                        Announcing Front Strategies: Ready-to-use rules
-                    </h3>
+                    <div class="flex justify-center">
+                        <a class="mt-5 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+                            href="{{ route('account.addresses.edit', $address->id) }}">
+                            編集
+                        </a>
+                    </div>
                 </div>
-            </a>
+            </div>
             <!-- End Card -->
+            @endforeach
         </div>
         <!-- End Grid -->
 

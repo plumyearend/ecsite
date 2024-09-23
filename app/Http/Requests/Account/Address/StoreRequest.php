@@ -19,7 +19,7 @@ class StoreRequest extends FormRequest
             'address2' => ['bail', 'nullable', 'string', 'max:100'],
             'address3' => ['bail', 'nullable', 'string', 'max:100'],
             'tel' => ['bail', 'required', new TelFormat],
-            'is_default_adress' => ['bail', 'nullable', 'in:0,1'],
+            'is_default_address' => ['bail', 'nullable', 'in:0,1'],
         ];
     }
 }
