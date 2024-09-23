@@ -23,7 +23,8 @@ class Address extends Model
         return Attribute::make(
             get: function ($value, $attributes) {
                 $postcode = $attributes['postcode'];
-                return substr($postcode, 0, 3) . "-" . substr($postcode, 3);
+
+                return substr($postcode, 0, 3).'-'.substr($postcode, 3);
             },
         );
     }

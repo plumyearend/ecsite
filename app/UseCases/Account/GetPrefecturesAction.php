@@ -13,6 +13,6 @@ class GetPrefecturesAction
             ->orderBy('id')
             ->get();
 
-        return $prefectures->mapWithKeys(fn($item) => [$item->id => $item->name]);
+        return $prefectures->mapWithKeys(fn ($item) => [$item->id => $item->name]);
     }
 }

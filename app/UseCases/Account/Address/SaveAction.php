@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class SaveAction
 {
-    public function __invoke(array $data, Address $address = null): ?Address
+    public function __invoke(array $data, ?Address $address = null): ?Address
     {
         $user = Auth::guard('web')->user();
         $existsDefaultAddress = Address::query()
