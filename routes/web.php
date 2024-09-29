@@ -31,3 +31,8 @@ Route::prefix('account')->name('account.')->group(function () {
             ->except(['show', 'destroy']);
     });
 });
+
+Route::middleware('guest')->prefix('auth')->name('auth.')->group(function () {
+    Route::get('/github', [LoginController::class, 'githubRedirect'])->name('github');
+    Route::get('/github/callback', [LoginController::class, 'githubCallback'])->name('github.callback');
+});

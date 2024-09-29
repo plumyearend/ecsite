@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Login\AuthenticateRequest;
 use App\UseCases\Login\LoginAction;
 use App\UseCases\Login\LogoutAction;
+use App\UseCases\Login\SocialLoginAction;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -13,10 +15,10 @@ class LoginController extends Controller
         return view('account.login');
     }
 
-    public function authenticate(AuthenticateRequest $request, LoginAction $action)
+    public function authenticate(AuthenticateRequest $request, LoginAction $loginAction)
     {
         $input = $request->only(['email', 'password']);
-        if (!$action($input['email'], $input['password'])) {
+        if (!$loginAction($input['email'], $input['password'])) {
             session()->flash('login_error', trans('auth.failed'));
 
             return redirect()->route('account.login');
@@ -30,5 +32,18 @@ class LoginController extends Controller
         $logoutAction();
 
         return redirect()->route('account.login');
+    }
+
+    public function githubRedirect()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function githubCallback(SocialLoginAction $socialLoginAction)
+    {
+        $socialiteUser = Socialite::driver('github')->user();
+        $socialLoginAction($socialiteUser);
+
+        return redirect()->route('top');
     }
 }
