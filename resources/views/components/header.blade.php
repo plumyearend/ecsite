@@ -45,7 +45,7 @@
                     <p>{{ auth()->user()->name }}<span>様</span></p>
                     <a class="p-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500"
                         href="{{ route('account.index') }}">
-                        アカウント情報
+                        マイページ
                     </a>
                     @endauth
 
