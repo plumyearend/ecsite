@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\UseCases\Product\GetListAction;
+
 class TopController extends Controller
 {
-    public function top()
+    public function top(GetListAction $getListAction)
     {
-        return view('top.index');
+        $products = $getListAction();
+        dump($products);
+
+        return view('top.index', ['products' => $products]);
     }
 }

@@ -31,7 +31,7 @@ class LoginController extends Controller
     {
         $logoutAction();
 
-        return redirect()->route('account.login');
+        return redirect()->route('top');
     }
 
     public function githubRedirect()
