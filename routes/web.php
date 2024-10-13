@@ -3,14 +3,16 @@
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Account\AddressController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\TopController;
+use App\Livewire\Pages\Cart;
+use App\Livewire\Pages\Products\Show;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [TopController::class, 'top'])->name('top');
 
-Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{product}', Show::class)->name('products.show');
+Route::get('/cart', Cart::class)->name('cart');
 
 Route::prefix('account')->name('account.')->group(function () {
     Route::middleware('guest')->group(function () {
