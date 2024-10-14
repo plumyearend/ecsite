@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SignUp\RegisterRequest;
 use App\Http\Requests\SignUp\StoreRequest;
+use App\UseCases\Cart\CollectCartToTableAction;
 use App\UseCases\Login\LoginAction;
 use App\UseCases\SignUp\CreateUserAction;
 use App\UseCases\SignUp\GetTmpRegistrationUserAction;
@@ -45,6 +46,7 @@ class SignUpController extends Controller
         StoreRequest $request,
         CreateUserAction $createUserAction,
         LoginAction $loginAction,
+        CollectCartToTableAction $collectCartToTableAction,
     ) {
         $input = $request->only(['name', 'password', 'email']);
         try {
@@ -57,6 +59,7 @@ class SignUpController extends Controller
                 DB::rollback();
                 throw new Exception('ログインに失敗しました。');
             }
+            $collectCartToTableAction();
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();

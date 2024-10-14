@@ -42,28 +42,42 @@
                 ">
                 <div class="py-2 md:py-0 flex flex-col md:flex-row md:items-center md:justify-end gap-0.5 md:gap-1">
                     @auth
-                    <p>{{ auth()->user()->name }}<span>様</span></p>
-                    <a class="p-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500"
-                        href="{{ route('account.index') }}">
-                        マイページ
-                    </a>
+                        <p>{{ auth()->user()->name }}<span>様</span></p>
+                        <a class="p-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500"
+                            href="{{ route('account.index') }}">
+                            マイページ
+                        </a>
                     @endauth
 
                     @auth
-                    <a class="p-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500"
-                        href="{{ route('account.logout') }}">
-                        ログアウト
-                    </a>
+                        <a class="p-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500"
+                            href="{{ route('account.logout') }}">
+                            ログアウト
+                        </a>
                     @else
-                    <a class="p-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500"
-                        href="{{ route('account.login') }}">
-                        ログイン
-                    </a>
-                    <a class="p-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500"
-                        href="{{ route('account.signup') }}">
-                        新規マイページ登録
-                    </a>
+                        <a class="p-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500"
+                            href="{{ route('account.login') }}">
+                            ログイン
+                        </a>
+                        <a class="p-2 flex items-center text-sm text-gray-800 hover:text-gray-500 focus:outline-none focus:text-gray-500"
+                            href="{{ route('account.signup') }}">
+                            新規マイページ登録
+                        </a>
                     @endauth
+                    <a href="{{ route('cart') }}" class="p-2 flex items-center text-gray-700 hover:text-gray-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H17m-8-6V5h3m4 8V5h3M6 19a1 1 0 102 0m8 0a1 1 0 102 0" />
+                        </svg>
+                        <span class="ml-2">カート</span>
+
+                        @if ($cartCount > 0)
+                            <span class="ml-1 text-sm font-semibold text-white bg-red-600 rounded-full px-2 py-0.5">
+                                {{ $cartCount }}
+                            </span>
+                        @endif
+                    </a>
                 </div>
             </div>
         </div>

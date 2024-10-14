@@ -10,7 +10,7 @@
     <div class="swiper container mx-auto px-4">
         <div class="swiper-wrapper">
             @foreach ($products as $product)
-                <a class="swiper-slide" href="">
+                <a class="swiper-slide" href="{{ route('products.show', ['product' => $product]) }}">
                     <div class="bg-white shadow-md rounded-lg overflow-hidden">
                         <img class="w-full h-48 object-cover"
                             src="{{ \Storage::url($product->productImages[0]->image) }}" alt="{{ $product->name }}">
