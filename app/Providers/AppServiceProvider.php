@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\View\Composers\CartComposer;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
                 return route('account.login');
             }
         });
+        View::composer('components.header', CartComposer::class);
     }
 }
