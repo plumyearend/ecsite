@@ -3,7 +3,6 @@
 namespace App\UseCases\Cart;
 
 use App\Models\CartProduct;
-use Illuminate\Support\Facades\Auth;
 
 class CollectCartToSessionAction
 {

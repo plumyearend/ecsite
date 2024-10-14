@@ -13,8 +13,11 @@ use Livewire\Component;
 class Show extends Component
 {
     public Product $product;
+
     public ProductImage $selectImage;
+
     public $quantity = 1;
+
     public $isShowModal = false;
 
     public function mount()

@@ -15,6 +15,7 @@ class GetCountAction
                 ->count();
         } else {
             $cart = session()->get('cartList', []);
+
             return count($cart);
         }
     }
