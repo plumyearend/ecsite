@@ -33,10 +33,10 @@ class ProductExporter extends Exporter
 
     public static function getCompletedNotificationBody(Export $export): string
     {
-        $body = '商品情報を ' . number_format($export->successful_rows) . '行ダウンロードしました。';
+        $body = '商品情報を '.number_format($export->successful_rows).'行ダウンロードしました。';
 
         if ($failedRowsCount = $export->getFailedRowsCount()) {
-            $body .= ' ' . number_format($failedRowsCount) . ' 行エクスポートに失敗しました。';
+            $body .= ' '.number_format($failedRowsCount).' 行エクスポートに失敗しました。';
         }
 
         return $body;
