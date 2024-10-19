@@ -7,6 +7,7 @@ use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\TopController;
 use App\Livewire\Pages\Cart;
 use App\Livewire\Pages\Products\Show;
+use Filament\Actions\Exports\Http\Controllers\DownloadExport;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [TopController::class, 'top'])->name('top');
@@ -39,3 +40,7 @@ Route::middleware('guest')->prefix('auth')->name('auth.')->group(function () {
     Route::get('/github', [LoginController::class, 'githubRedirect'])->name('github');
     Route::get('/github/callback', [LoginController::class, 'githubCallback'])->name('github.callback');
 });
+
+Route::get('/filament/exports/{export}/download', DownloadExport::class)
+    ->name('filament.exports.download')
+    ->middleware(['web', 'auth:admin']);

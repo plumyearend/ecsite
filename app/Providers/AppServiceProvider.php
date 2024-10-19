@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\AdminExport;
 use App\View\Composers\CartComposer;
+use Filament\Actions\Exports\Models\Export;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -15,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(Export::class, AdminExport::class);
     }
 
     /**
