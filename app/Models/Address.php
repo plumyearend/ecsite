@@ -24,7 +24,7 @@ class Address extends Model
             get: function ($value, $attributes) {
                 $postcode = $attributes['postcode'];
 
-                return substr($postcode, 0, 3).'-'.substr($postcode, 3);
+                return substr($postcode, 0, 3) . '-' . substr($postcode, 3);
             },
         );
     }
