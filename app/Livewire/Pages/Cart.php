@@ -29,6 +29,7 @@ class Cart extends Component
             if ($item['product']->id === $productId) {
                 $item['count']++;
             }
+
             return $item;
         });
         $updateProductCountAction($productId, $this->list[$productId]['count']);
@@ -41,6 +42,7 @@ class Cart extends Component
             if ($item['product']->id === $productId) {
                 $item['count']--;
             }
+
             return $item;
         });
         $updateProductCountAction($productId, $this->list[$productId]['count']);

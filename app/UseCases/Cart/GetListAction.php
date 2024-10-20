@@ -5,8 +5,8 @@ namespace App\UseCases\Cart;
 use App\Enums\Product\Status;
 use App\Models\CartProduct;
 use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class GetListAction
 {
