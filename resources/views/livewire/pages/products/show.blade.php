@@ -27,8 +27,8 @@
                     </p>
 
                     <div class="flex items-center mb-6">
-                        <label for="quantity" class="mr-4 text-lg font-medium">数量:</label>
-                        <input type="number" wire:model="quantity" value="1" min="1"
+                        <label for="count" class="mr-4 text-lg font-medium">数量:</label>
+                        <input type="number" wire:model="count" value="1" min="1"
                             max="{{ $product->count_max < 5 ? $product->count_max : 5 }}"
                             class="w-16 text-center border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>

@@ -16,7 +16,7 @@ class Show extends Component
 
     public ProductImage $selectImage;
 
-    public $quantity = 1;
+    public $count = 1;
 
     public $isShowModal = false;
 
@@ -34,7 +34,7 @@ class Show extends Component
     {
         try {
             DB::beginTransaction();
-            $addProductAction($this->product, $this->quantity);
+            $addProductAction($this->product, $this->count);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();

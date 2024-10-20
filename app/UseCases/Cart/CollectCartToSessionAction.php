@@ -17,7 +17,7 @@ class CollectCartToSessionAction
         $cartProductArray = $cartProducts->map(function ($item) {
             return [
                 'id' => $item['product_id'],
-                'quantity' => $item['count'],
+                'count' => $item['count'],
             ];
         });
 
@@ -26,7 +26,7 @@ class CollectCartToSessionAction
         foreach ($cartProductArray as $product) {
             $cart[$product['id']] = [
                 'id' => $product['id'],
-                'quantity' => $product['quantity'],
+                'count' => $product['count'],
             ];
         }
         session()->put('cartList', $cart);

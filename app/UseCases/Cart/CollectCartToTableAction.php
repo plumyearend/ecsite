@@ -26,7 +26,7 @@ class CollectCartToTableAction
                     'product_id' => $key,
                 ],
                 [
-                    'count' => $cartProduct ? $cartProduct->count + $item['quantity'] : $item['quantity'],
+                    'count' => $cartProduct ? $cartProduct->count + $item['count'] : $item['count'],
                 ]
             );
         }

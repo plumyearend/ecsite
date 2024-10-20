@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Pages;
 
+use App\UseCases\Cart\DeleteProductAction;
 use App\UseCases\Cart\GetListAction;
+use App\UseCases\Cart\UpdateProductCountAction;
 use Livewire\Component;
 
 class Cart extends Component
@@ -21,29 +23,41 @@ class Cart extends Component
         return view('livewire.pages.cart');
     }
 
-    public function increaseQuantity($productId)
+    public function increaseCount(UpdateProductCountAction $updateProductCountAction, int $productId)
     {
-        // TODO: 商品増加
+        $this->list = $this->list->map(function ($item) use ($productId) {
+            if ($item['product']->id === $productId) {
+                $item['count']++;
+            }
+            return $item;
+        });
+        $updateProductCountAction($productId, $this->list[$productId]['count']);
         $this->updateTotalPrice();
     }
 
-    public function decreaseQuantity($productId)
+    public function decreaseCount(UpdateProductCountAction $updateProductCountAction, int $productId)
     {
-        // TODO: 商品減少
+        $this->list = $this->list->map(function ($item) use ($productId) {
+            if ($item['product']->id === $productId) {
+                $item['count']--;
+            }
+            return $item;
+        });
+        $updateProductCountAction($productId, $this->list[$productId]['count']);
         $this->updateTotalPrice();
     }
 
-    public function removeItem($productId)
+    public function removeItem(DeleteProductAction $deleteProductAction, int $productId)
     {
-        // TODO: 商品削除
-
+        $this->list->pull($productId);
+        $deleteProductAction($productId);
         $this->updateTotalPrice();
     }
 
     private function updateTotalPrice()
     {
         $this->totalPrice = $this->list->sum(function ($item) {
-            return $item['product']->price * $item['quantity'];
+            return $item['product']->price * $item['count'];
         });
     }
 }

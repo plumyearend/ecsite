@@ -6,23 +6,25 @@ use App\Enums\Product\Status;
 use App\Models\CartProduct;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 
 class GetListAction
 {
-    public function __invoke()
+    public function __invoke(): Collection
     {
         if (Auth::guard('web')->check()) {
-            $cartProducts = CartProduct::query()
+            $cartProductCollection = CartProduct::query()
                 ->select(['product_id', 'count'])
                 ->where('user_id', Auth::guard('web')->id())
                 ->orderBy('created_at')
-                ->get()
-                ->map(function ($item) {
-                    return [
-                        'id' => $item->product_id,
-                        'quantity' => $item->count,
-                    ];
-                });
+                ->get();
+            $cartProducts = [];
+            foreach ($cartProductCollection as $product) {
+                $cartProducts[$product->product_id] = [
+                    'id' => $product->product_id,
+                    'count' => $product->count,
+                ];
+            }
         } else {
             $cartProducts = session()->get('cartList', []);
         }
@@ -40,12 +42,12 @@ class GetListAction
 
         $list = collect();
         foreach ($cartProducts as $cartProduct) {
-            $list->push([
-                'quantity' => $cartProduct['quantity'],
+            $list[$cartProduct['id']] = [
+                'count' => $cartProduct['count'],
                 'product' => $products->first(function ($product) use ($cartProduct) {
                     return $product->id === $cartProduct['id'];
                 }),
-            ]);
+            ];
         }
 
         return $list;
