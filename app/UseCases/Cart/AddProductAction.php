@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AddProductAction
 {
-    public function __invoke(Product $product, int $quantity)
+    public function __invoke(Product $product, int $count)
     {
         if (Auth::guard('web')->check()) {
             $cartProduct = CartProduct::query()
@@ -22,18 +22,18 @@ class AddProductAction
                     'product_id' => $product->id,
                 ],
                 [
-                    'count' => $cartProduct ? $cartProduct->count + $quantity : $quantity,
+                    'count' => $cartProduct ? $cartProduct->count + $count : $count,
                 ]
             );
         } else {
             $cart = session()->get('cartList', []);
 
             if (isset($cart[$product->id])) {
-                $cart[$product->id]['quantity'] += $quantity;
+                $cart[$product->id]['count'] += $count;
             } else {
                 $cart[$product->id] = [
                     'id' => $product->id,
-                    'quantity' => $quantity,
+                    'count' => $count,
                 ];
             }
 
