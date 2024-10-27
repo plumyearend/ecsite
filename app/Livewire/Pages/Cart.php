@@ -62,4 +62,18 @@ class Cart extends Component
             return $item['product']->price * $item['count'];
         });
     }
+
+    public function redirectToLogin()
+    {
+        session(['url.intended' => url()->previous()]);
+
+        return redirect()->to(route('account.login'));
+    }
+
+    public function redirectToSignup()
+    {
+        session(['url.intended' => url()->previous()]);
+
+        return redirect()->to(route('account.signup'));
+    }
 }

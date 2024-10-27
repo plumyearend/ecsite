@@ -75,10 +75,6 @@ class OrderResource extends Resource
                     ->required()
                     ->numeric()
                     ->default(0),
-                Forms\Components\TextInput::make('pay_method')
-                    ->label('支払い方法')
-                    ->required()
-                    ->numeric(),
             ]);
     }
 

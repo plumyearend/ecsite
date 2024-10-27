@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Account\AddressController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\TopController;
 use App\Livewire\Pages\Cart;
+use App\Livewire\Pages\Checkouts\Information;
 use App\Livewire\Pages\Products\Show;
 use Filament\Actions\Exports\Http\Controllers\DownloadExport;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +35,13 @@ Route::prefix('account')->name('account.')->group(function () {
         Route::get('/', [AccountController::class, 'index'])->name('index');
         Route::resource('/addresses', AddressController::class)
             ->except(['show', 'destroy']);
+    });
+});
+
+Route::middleware('auth:web')->group(function () {
+    Route::post('/cart', [CartController::class, 'checkout'])->name('cart.checkout');
+    Route::prefix('checkouts/{order}')->name('checkouts.')->group(function () {
+        Route::get('/information', Information::class)->name('information');
     });
 });
 
