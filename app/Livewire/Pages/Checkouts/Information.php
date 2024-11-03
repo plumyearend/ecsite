@@ -9,5 +9,9 @@ class Information extends Component
 {
     public Order $order;
 
-    public function mount() {}
+    public function render()
+    {
+        // TODO: 登録済みのお届け先住所を取得
+        return view('livewire.pages.checkouts.information');
+    }
 }
