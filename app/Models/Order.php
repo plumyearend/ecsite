@@ -9,4 +9,9 @@ class Order extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

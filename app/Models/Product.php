@@ -26,4 +26,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class);
     }
+
+    public function mainProductImage()
+    {
+        return $this->hasOne(ProductImage::class)->orderBy('sort');
+    }
 }

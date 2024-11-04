@@ -39,7 +39,6 @@ Route::prefix('account')->name('account.')->group(function () {
 });
 
 Route::middleware('auth:web')->group(function () {
-    Route::post('/cart', [CartController::class, 'checkout'])->name('cart.checkout');
     Route::prefix('checkouts/{order}')->name('checkouts.')->group(function () {
         Route::get('/information', Information::class)->name('information');
     });
