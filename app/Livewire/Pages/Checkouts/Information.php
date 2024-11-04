@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Checkouts;
 use App\Models\Order;
 use App\UseCases\Account\Address\GetListAction;
 use App\UseCases\Account\GetPrefecturesAction;
+use App\UseCases\Checkout\GetOrderDetailsAction;
 use Livewire\Component;
 
 class Information extends Component
@@ -25,34 +26,14 @@ class Information extends Component
     public function mount(
         GetListAction $getListAction,
         GetPrefecturesAction $getPrefecturesAction,
+        GetOrderDetailsAction $getOrderDetailsAction,
     ) {
         $this->addresses = $getListAction();
         $this->prefectures = $getPrefecturesAction();
         $this->selectAddressId = $this->addresses->firstWhere('is_default_address', true)->id;
         $this->setAddress();
 
-        $this->orderDetails = $this->order->orderDetails()
-            ->select([
-                'product_id',
-                'count',
-                'price_tax',
-            ])
-            ->with('product', function ($query) {
-                $query->select([
-                    'id',
-                    'status',
-                    'name',
-                    'price',
-                ]);
-                $query->with('mainProductImage', function ($query) {
-                    $query->select([
-                        'product_id',
-                        'image',
-                    ]);
-                });
-            })
-            ->orderBy('id')
-            ->get();
+        $this->orderDetails = $getOrderDetailsAction($this->order);
     }
 
     public function render()
