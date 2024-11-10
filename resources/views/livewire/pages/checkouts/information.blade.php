@@ -101,13 +101,13 @@
             <div class="space-y-4">
                 @foreach ($orderDetails as $orderDetail)
                     <div class="flex items-center p-4 border border-gray-200 rounded-lg">
-                        <img src="{{ \Storage::url($orderDetail->product->mainProductImage->image) }}"
-                            alt="{{ $orderDetail->product->name }}" class="w-16 h-16 object-cover rounded-lg mr-4">
+                        <img src="{{ \Storage::url($orderDetail['product']['main_product_image']['image']) }}"
+                            alt="{{ $orderDetail['product']['name'] }}" class="w-16 h-16 object-cover rounded-lg mr-4">
                         <div class="flex-1">
                             <h3 class="text-lg font-semibold text-gray-800">
-                                {{ $orderDetail->product->name }} × {{ $orderDetail->count }}
+                                {{ $orderDetail['product']['name'] }} × {{ $orderDetail['count'] }}
                             </h3>
-                            <p class="text-gray-600">{{ number_format($orderDetail->price_tax) }} 円</p>
+                            <p class="text-gray-600">{{ number_format($orderDetail['price_tax']) }} 円</p>
                         </div>
                     </div>
                 @endforeach

@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\TopController;
+use App\Http\Middleware\VerifyOrderEncodedId;
 use App\Livewire\Pages\Cart;
 use App\Livewire\Pages\Checkouts\Information;
 use App\Livewire\Pages\Products\Show;
@@ -38,8 +39,8 @@ Route::prefix('account')->name('account.')->group(function () {
     });
 });
 
-Route::middleware('auth:web')->group(function () {
-    Route::prefix('checkouts/{order}')->name('checkouts.')->group(function () {
+Route::middleware(['auth:web', VerifyOrderEncodedId::class])->group(function () {
+    Route::prefix('checkouts/{encodedId}')->name('checkouts.')->group(function () {
         Route::get('/information', Information::class)->name('information');
     });
 });

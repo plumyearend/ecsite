@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages;
 
+use App\Models\Order;
 use App\UseCases\Cart\DeleteProductAction;
 use App\UseCases\Cart\GetListAction;
 use App\UseCases\Cart\UpdateProductCountAction;
@@ -78,8 +79,9 @@ class Cart extends Component
             Log::error($e);
             throw new Exception('エラーが発生しました。');
         }
+        $encodedId = Order::encodeId($order->id);
 
-        return redirect()->to(route('checkouts.information', ['order' => $order]));
+        return redirect()->to(route('checkouts.information', ['encodedId' => $encodedId]));
     }
 
     public function redirectToLogin()

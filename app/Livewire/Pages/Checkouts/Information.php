@@ -10,6 +10,7 @@ use Livewire\Component;
 
 class Information extends Component
 {
+    public string $encodedId;
     public Order $order;
     public $orderDetails;
     public $addresses;
@@ -28,12 +29,13 @@ class Information extends Component
         GetPrefecturesAction $getPrefecturesAction,
         GetOrderDetailsAction $getOrderDetailsAction,
     ) {
+        $this->order = Order::find(Order::decodeId($this->encodedId));
         $this->addresses = $getListAction();
         $this->prefectures = $getPrefecturesAction();
         $this->selectAddressId = $this->addresses->firstWhere('is_default_address', true)->id;
         $this->setAddress();
 
-        $this->orderDetails = $getOrderDetailsAction($this->order);
+        $this->orderDetails = $getOrderDetailsAction($this->order)->toArray();
     }
 
     public function render()
