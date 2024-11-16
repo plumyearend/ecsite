@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\Order\Status;
 use App\Models\Order;
 use Closure;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class VerifyOrderEncodedId
         $exists = Order::query()
             ->where('id', $orderId)
             ->where('user_id', Auth::id())
+            ->where('status', Status::PAYMENT_WAITING)
             ->exists();
         if (!$exists) {
             abort(404);
