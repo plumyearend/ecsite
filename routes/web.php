@@ -3,6 +3,7 @@
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Account\AddressController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\TopController;
@@ -42,6 +43,8 @@ Route::prefix('account')->name('account.')->group(function () {
 Route::middleware(['auth:web', VerifyOrderEncodedId::class])->group(function () {
     Route::prefix('checkouts/{encodedId}')->name('checkouts.')->group(function () {
         Route::get('/information', Information::class)->name('information');
+        Route::post('/information', [CheckoutController::class, 'saveAddress'])->name('information.save');
+        Route::post('/payment', [CheckoutController::class, 'payment'])->name('payment');
     });
 });
 

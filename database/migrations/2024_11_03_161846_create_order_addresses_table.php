@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('address2');
             $table->string('address3')->nullable();
             $table->string('tel', 20);
+            $table->datetime('created_at')->useCurrent()->comment('作成日時');
+            $table->datetime('updated_at')->useCurrent()->comment('更新日時');
         });
         Schema::table('orders', function (Blueprint $table) {
             $table->dropForeign('orders_prefecture_id_foreign');
