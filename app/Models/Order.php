@@ -15,6 +15,11 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class);
     }
 
+    public function orderAddress()
+    {
+        return $this->hasOne(OrderAddress::class);
+    }
+
     public static function encodeId(int $id): string
     {
         return base64_encode((string)$id . env('ORDER_ID_SALT'));

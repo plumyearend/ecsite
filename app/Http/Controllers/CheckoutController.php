@@ -29,11 +29,12 @@ class CheckoutController extends Controller
             throw new Exception('エラーが発生しました。');
         }
 
-        return redirect('checkouts.payment');
+        return redirect()->route('checkouts.payment', ['encodedId' => $encodedId]);
     }
 
-    public function payment()
+    public function payment(string $encodedId)
     {
+
         // TODO: 決済選択画面を表示
     }
 }
