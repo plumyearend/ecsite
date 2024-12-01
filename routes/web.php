@@ -47,6 +47,7 @@ Route::middleware(['auth:web', VerifyOrderEncodedId::class])->group(function () 
         Route::get('/payment', [CheckoutController::class, 'payment'])
             ->middleware([ExistsOrderAddress::class])
             ->name('payment');
+        Route::post('/payment', [CheckoutController::class, 'purchase'])->name('purchase');
     });
 });
 
