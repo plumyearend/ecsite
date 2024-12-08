@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Checkout\SaveAddressRequest;
+use App\Http\Requests\Checkout\StoreRequest;
+use App\UseCases\Cart\DeleteProductAction;
+use App\UseCases\Checkout\FixPurchaseAction;
 use App\UseCases\Checkout\GetOrderAction;
 use App\UseCases\Checkout\GetOrderDetailsAction;
 use App\UseCases\Checkout\SaveOrderAddressAction;
@@ -33,7 +36,7 @@ class CheckoutController extends Controller
             throw new Exception('エラーが発生しました。');
         }
 
-        return redirect()->route('checkouts.payment', ['encodedId' => $encodedId]);
+        return redirect()->route('checkouts.payment.show', ['encodedId' => $encodedId]);
     }
 
     public function payment(
@@ -75,5 +78,40 @@ class CheckoutController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    public function store(
+        StoreRequest $request,
+        GetOrderAction $getOrderAction,
+        FixPurchaseAction $fixPurchaseAction,
+        DeleteProductAction $deleteProductAction,
+        string $encodedId,
+    ) {
+        $stripeIntentId = $request->get('stripe_intent_id');
+        $stripeMethodId = $request->get('stripe_method_id');
+        $order = $getOrderAction($encodedId);
+
+        try {
+            DB::beginTransaction();
+            if (!$fixPurchaseAction($order, $stripeIntentId, $stripeMethodId)) {
+                DB::rollback();
+                throw new Exception('商品購入に失敗しました。ID:' . $encodedId);
+            }
+            foreach ($order->orderDetails as $orderDetail) {
+                $deleteProductAction($orderDetail->product_id);
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e);
+            throw new Exception('エラーが発生しました。');
+        }
+
+        return redirect()->route('checkouts.complete');
+    }
+
+    public function complete()
+    {
+        return view('checkouts.complete');
     }
 }
