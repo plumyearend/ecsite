@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests\Checkout;
 
-use App\Rules\PostcodeFormat;
-use App\Rules\TelFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest

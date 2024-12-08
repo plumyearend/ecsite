@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Pages\Checkouts;
 
+use App\Models\Order;
 use App\Rules\PostcodeFormat;
 use App\Rules\TelFormat;
-use App\Models\Order;
 use App\UseCases\Account\Address\GetListAction;
 use App\UseCases\Account\GetPrefecturesAction;
 use App\UseCases\Checkout\GetOrderAction;

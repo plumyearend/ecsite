@@ -35,7 +35,7 @@ class Order extends Model
 
     public static function encodeId(int $id): string
     {
-        return base64_encode((string)$id . env('ORDER_ID_SALT'));
+        return base64_encode((string) $id . env('ORDER_ID_SALT'));
     }
 
     public static function decodeId(string $encodedId): int
@@ -44,6 +44,7 @@ class Order extends Model
         if (!str_contains($decodedStr, env('ORDER_ID_SALT'))) {
             return 0;
         }
-        return (int)str_replace(env('ORDER_ID_SALT'), '', $decodedStr);
+
+        return (int) str_replace(env('ORDER_ID_SALT'), '', $decodedStr);
     }
 }
