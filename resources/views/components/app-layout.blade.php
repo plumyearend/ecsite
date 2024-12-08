@@ -15,6 +15,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite(['resources/js/swiper.js'])
+    @stack('headScripts')
     @livewireStyles
 </head>
 

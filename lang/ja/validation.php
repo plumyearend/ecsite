@@ -261,6 +261,11 @@ return [
         'year' => '年',
         'accepts' => '利用規約およびプライバシーポリシー',
         'postcode' => '郵便番号',
+        'prefecture_id' => '都道府県',
+        'address1' => '市区町村',
+        'address2' => '地名・番地',
+        'address3' => 'ビル名・マンション名',
+        'tel' => '電話番号',
         'is_default_address' => 'この住所を既定のお届け先にする',
     ],
 

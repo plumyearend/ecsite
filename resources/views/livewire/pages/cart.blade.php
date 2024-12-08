@@ -43,4 +43,35 @@
     <div class="mt-6">
         <h3 class="text-xl font-semibold">小計（税込）: ¥{{ number_format($totalPrice) }}</h3>
     </div>
+
+    <div class="mt-6">
+        @auth
+            <div class="mt-3 flex">
+                <a href="{{ route('top') }}"
+                    class="w-full px-6 py-3 bg-blue-600 text-center text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    買い物を続ける
+                </a>
+
+                <button wire:click="toCheckout"
+                    class="w-full ml-3 px-6 py-3 bg-blue-600 text-center text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    ご購入手続きへ進む
+                </button>
+            </div>
+        @else
+            <p class="text-center">
+                商品購入を行うにはログインが必要です。
+            </p>
+            <div class="mt-3 flex">
+                <button wire:click="redirectToLogin"
+                    class="w-full px-6 py-3 bg-blue-600 text-center text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    ログイン
+                </button>
+
+                <button wire:click="redirectToSignup"
+                    class="w-full ml-3 px-6 py-3 bg-blue-600 text-center text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    マイページ登録
+                </button>
+            </div>
+        @endauth
+    </div>
 </div>

@@ -32,7 +32,7 @@ class LoginController extends Controller
 
         $collectCartToTableAction();
 
-        return redirect()->route('top');
+        return redirect()->intended();
     }
 
     public function logout(
@@ -59,6 +59,6 @@ class LoginController extends Controller
         $socialLoginAction($socialiteUser);
         $collectCartToTableAction();
 
-        return redirect()->route('top');
+        return redirect()->intended();
     }
 }
