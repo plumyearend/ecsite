@@ -82,38 +82,21 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
+                Tables\Columns\TextColumn::make('id')
                     ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('first_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('last_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('postcode')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('prefecture_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('address1')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('address2')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('address3')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('tel')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('shipping_fee')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('total_price')
-                    ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->label('ID'),
                 Tables\Columns\TextColumn::make('status')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('pay_method')
-                    ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->label('ステータス'),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->searchable()
+                    ->sortable()
+                    ->label('ユーザー名'),
+                Tables\Columns\TextColumn::make('total_price')
+                    ->searchable()
+                    ->sortable()
+                    ->label('金額'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
