@@ -31,4 +31,9 @@ class Product extends Model
     {
         return $this->hasOne(ProductImage::class)->orderBy('sort');
     }
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

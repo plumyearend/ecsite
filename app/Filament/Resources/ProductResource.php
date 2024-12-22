@@ -120,6 +120,7 @@ class ProductResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -138,8 +139,7 @@ class ProductResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-        ];
+        return [];
     }
 
     public static function getPages(): array
@@ -148,6 +148,7 @@ class ProductResource extends Resource
             'index' => Pages\ListProducts::route('/'),
             'create' => Pages\CreateProduct::route('/create'),
             'edit' => Pages\EditProduct::route('/{record}/edit'),
+            'view' => Pages\ViewProduct::route('/{record}'),
         ];
     }
 }
