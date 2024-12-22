@@ -9,4 +9,9 @@ class OrderAddress extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function prefecture()
+    {
+        return $this->belongsTo(Prefecture::class);
+    }
 }
