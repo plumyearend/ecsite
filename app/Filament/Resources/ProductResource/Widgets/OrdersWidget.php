@@ -12,7 +12,7 @@ class OrdersWidget extends BaseWidget
 {
     protected static ?string $heading = '注文履歴';
 
-    protected int | string | array $columnSpan = 'full';
+    protected int|string|array $columnSpan = 'full';
 
     public ?Product $record = null;
 
