@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Account\AddressController;
+use App\Http\Controllers\Account\OrderHistoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignUpController;
@@ -37,6 +38,7 @@ Route::prefix('account')->name('account.')->group(function () {
         Route::get('/', [AccountController::class, 'index'])->name('index');
         Route::resource('/addresses', AddressController::class)
             ->except(['show', 'destroy']);
+        Route::get('/order-history', [OrderHistoryController::class, 'index'])->name('order-history');
     });
 });
 
