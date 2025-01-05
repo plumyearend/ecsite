@@ -27,7 +27,7 @@ class CheckoutController extends Controller
             DB::beginTransaction();
             if (!$saveOrderAddressAction($encodedId, $input)) {
                 DB::rollback();
-                throw new Exception('ユーザー作成に失敗しました。');
+                throw new Exception('送り先保存に失敗しました。');
             }
             DB::commit();
         } catch (\Exception $e) {
