@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Checkout\SaveAddressRequest;
 use App\Http\Requests\Checkout\StoreRequest;
+use App\Notifications\Purchase;
 use App\UseCases\Cart\DeleteProductAction;
 use App\UseCases\Checkout\FixPurchaseAction;
 use App\UseCases\Checkout\GetOrderAction;
 use App\UseCases\Checkout\GetOrderDetailsAction;
 use App\UseCases\Checkout\SaveOrderAddressAction;
 use Exception;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Stripe\Stripe;
@@ -17,6 +19,8 @@ use Stripe\StripeClient;
 
 class CheckoutController extends Controller
 {
+    use Notifiable;
+
     public function saveAddress(
         SaveAddressRequest $request,
         string $encodedId,
@@ -100,6 +104,7 @@ class CheckoutController extends Controller
             foreach ($order->orderDetails as $orderDetail) {
                 $deleteProductAction($orderDetail->product_id);
             }
+            $this->notify(new Purchase($order));
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
