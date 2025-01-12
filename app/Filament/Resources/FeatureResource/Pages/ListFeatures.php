@@ -22,7 +22,6 @@ class ListFeatures extends ListRecords
         ];
     }
 
-
     public function table(Table $table): Table
     {
         return $table
