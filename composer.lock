@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e68f0395b3011e479f491c1d6d0b6301",
+    "content-hash": "15ab602569f71296effe4dfbc8d16d9d",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4153,6 +4153,84 @@
             "time": "2024-09-05T15:25:50+00:00"
         },
         {
+            "name": "nyholm/psr7",
+            "version": "1.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nyholm/psr7.git",
+                "reference": "a71f2b11690f4b24d099d6b16690a90ae14fc6f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nyholm/psr7/zipball/a71f2b11690f4b24d099d6b16690a90ae14fc6f3",
+                "reference": "a71f2b11690f4b24d099d6b16690a90ae14fc6f3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.1 || ^2.0"
+            },
+            "provide": {
+                "php-http/message-factory-implementation": "1.0",
+                "psr/http-factory-implementation": "1.0",
+                "psr/http-message-implementation": "1.0"
+            },
+            "require-dev": {
+                "http-interop/http-factory-tests": "^0.9",
+                "php-http/message-factory": "^1.0",
+                "php-http/psr7-integration-tests": "^1.0",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.4",
+                "symfony/error-handler": "^4.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nyholm\\Psr7\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com"
+                },
+                {
+                    "name": "Martijn van der Ven",
+                    "email": "martijn@vanderven.se"
+                }
+            ],
+            "description": "A fast PHP7 implementation of PSR-7",
+            "homepage": "https://tnyholm.se",
+            "keywords": [
+                "psr-17",
+                "psr-7"
+            ],
+            "support": {
+                "issues": "https://github.com/Nyholm/psr7/issues",
+                "source": "https://github.com/Nyholm/psr7/tree/1.8.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Zegnat",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nyholm",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-09-09T07:06:30+00:00"
+        },
+        {
             "name": "openspout/openspout",
             "version": "v4.26.0",
             "source": {
@@ -7211,6 +7289,82 @@
             "time": "2024-09-09T11:45:10+00:00"
         },
         {
+            "name": "symfony/polyfill-php81",
+            "version": "v1.32.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php81.git",
+                "reference": "4a4cfc2d253c21a5ad0e53071df248ed48c6ce5c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php81/zipball/4a4cfc2d253c21a5ad0e53071df248ed48c6ce5c",
+                "reference": "4a4cfc2d253c21a5ad0e53071df248ed48c6ce5c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php81\\": ""
+                },
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 8.1+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php81/tree/v1.32.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-09-09T11:45:10+00:00"
+        },
+        {
             "name": "symfony/polyfill-php83",
             "version": "v1.31.0",
             "source": {
@@ -8058,6 +8212,135 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.2.7"
             },
             "time": "2023-12-08T13:03:43+00:00"
+        },
+        {
+            "name": "tpetry/laravel-mysql-explain",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tpetry/laravel-mysql-explain.git",
+                "reference": "3e83942d72bca685310623487d425631e57aa745"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tpetry/laravel-mysql-explain/zipball/3e83942d72bca685310623487d425631e57aa745",
+                "reference": "3e83942d72bca685310623487d425631e57aa745",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "guzzlehttp/guzzle": "^7.0",
+                "illuminate/contracts": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": "^8.0",
+                "tpetry/php-mysql-explain": "^1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.6",
+                "nunomaduro/collision": "^3.1|^4.0|^5.0|^6.0|^7.0|^8.0",
+                "nunomaduro/larastan": "^1.0|^2.0",
+                "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0|^8.0|^9.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "MysqlExplain": "Tpetry\\LaravelMysqlExplain\\Facades\\MysqlExplain"
+                    },
+                    "providers": [
+                        "Tpetry\\LaravelMysqlExplain\\MysqlExplainServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tpetry\\LaravelMysqlExplain\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Petry",
+                    "email": "github@tpetry.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Get Visual MySQL EXPLAIN for Laravel.",
+            "homepage": "https://github.com/tpetry/laravel-mysql-explain",
+            "keywords": [
+                "explain",
+                "laravel",
+                "mysql"
+            ],
+            "support": {
+                "issues": "https://github.com/tpetry/laravel-mysql-explain/issues",
+                "source": "https://github.com/tpetry/laravel-mysql-explain/tree/2.1.0"
+            },
+            "time": "2025-02-14T11:43:01+00:00"
+        },
+        {
+            "name": "tpetry/php-mysql-explain",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tpetry/php-mysql-explain.git",
+                "reference": "954a6ad75cb3764b9d6c20f27c482950500af17f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tpetry/php-mysql-explain/zipball/954a6ad75cb3764b9d6c20f27c482950500af17f",
+                "reference": "954a6ad75cb3764b9d6c20f27c482950500af17f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "nyholm/psr7": "^1.6.0",
+                "php": ">=7.4",
+                "psr/http-client": "^1.0",
+                "symfony/polyfill-php81": "^1.22"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.64.0",
+                "mockery/mockery": "^1.6.12",
+                "pestphp/pest": "^1.23.1|^2.0|^3.0",
+                "php-http/mock-client": "^1.6",
+                "phpstan/phpstan": "^1.12.4",
+                "spatie/ray": "^1.41",
+                "vlucas/phpdotenv": "^5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tpetry\\PhpMysqlExplain\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "tpetry",
+                    "email": "github@tpetry.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Visual MySQL EXPLAIN plans for PHP",
+            "homepage": "https://github.com/tpetry/php-mysql-explain",
+            "keywords": [
+                "explain",
+                "mysql"
+            ],
+            "support": {
+                "issues": "https://github.com/tpetry/php-mysql-explain/issues",
+                "source": "https://github.com/tpetry/php-mysql-explain/tree/1.0.0"
+            },
+            "time": "2024-09-26T11:17:02+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
