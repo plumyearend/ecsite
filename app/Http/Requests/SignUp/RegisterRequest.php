@@ -9,7 +9,15 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['bail', 'required', 'max:255', 'email:dns,strict,spoof', 'unique:users'],
+            'email' => [
+                'bail',
+                'required',
+                'max:255',
+                app()->environment('local')
+                    ? 'email:dns,strict,spoof'
+                    : 'email',
+                'unique:users',
+            ],
             'accepts' => ['bail', 'required'],
         ];
     }

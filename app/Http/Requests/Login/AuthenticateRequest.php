@@ -10,7 +10,14 @@ class AuthenticateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['bail', 'required', 'max:255', 'email:dns,strict,spoof'],
+            'email' => [
+                'bail',
+                'required',
+                'max:255',
+                app()->environment('local')
+                    ? 'email:dns,strict,spoof'
+                    : 'email',
+            ],
             'password' => ['bail', 'required', 'max:255', new PasswordFormat],
         ];
     }
