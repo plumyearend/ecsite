@@ -1,19 +1,19 @@
 # 学習用ECサイト
 
-Laravel をベースに学習用に作成した EC サイトです。
-主に **Laravel 関連パッケージの検証** や **新しい技術の試験導入** を目的としています。
+Laravel をベースに学習用に作成した EC サイトです。  
+主に **Laravel 関連パッケージの検証** や **新しい技術の試験導入** を目的としています。  
 
-デモ用のため、BASIC認証をかけています。
-BASIC認証ユーザー：azarashi
-BASIC認証パスワード：f3ZUq4gJ
+デモ用のため、BASIC認証をかけています。  
+BASIC認証ユーザー：azarashi  
+BASIC認証パスワード：f3ZUq4gJ  
 
-URL：http://35.78.139.160/
-ログイン用メールアドレス：demo@example.com
-ログイン用パスワード：h4cCH7aM
+URL：http://35.78.139.160/  
+ログイン用メールアドレス：demo@example.com  
+ログイン用パスワード：h4cCH7aM  
 
-管理画面URL：http://35.78.139.160/admin
-ログイン用メールアドレス：admin@example.com
-ログイン用パスワード：7yxQQrwY
+管理画面URL：http://35.78.139.160/admin  
+ログイン用メールアドレス：admin@example.com  
+ログイン用パスワード：7yxQQrwY  
 
 ## 技術スタック
 
